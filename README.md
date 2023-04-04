@@ -1,4 +1,4 @@
-# Background template
+# Background
 
 - This repo for background job consume rabbitMQ to run ansible
 
@@ -13,10 +13,6 @@
 ```
 create database background;
 ```
-
-## Todo
-
-- Move `config.py` to `env.py` so we can reload app with new config. Does not need rebuild.
 
 ## Alembic
 
@@ -38,16 +34,23 @@ alembic revision --autogenerate -m "create tables Ansible"
 alembic upgrade head
 ```
 
-## Local test
+## Create database mariadb
 
-- Consumer:
+- From docker:
 
-```
-python3 main.py
-```
-
-- Producer test:
 
 ```
-python3 producer_test.py
+docker run -d --name mariadb_background --env MARIADB_USER=mariadb --env MARIADB_PASSWORD=mariadb --env MARIADB_ROOT_PASSWORD=mariadb_root mariadb:10.7
+```
+
+- Check ip of container:
+
+```
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mariadb_background
+```
+
+- Create database:
+
+```
+create database background;
 ```

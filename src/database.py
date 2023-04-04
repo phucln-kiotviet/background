@@ -9,7 +9,6 @@ load_dotenv()
 DATABASE_URI = os.getenv('DATABASE_URI')
 engine = create_engine(DATABASE_URI)
 
-# Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
 

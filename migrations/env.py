@@ -6,7 +6,7 @@ from sqlalchemy import pool
 
 from alembic import context
 from dotenv import load_dotenv
-from ansibles.models import Base
+from src.ansibles.models import Base
 
 load_dotenv()
 DATABASE_URI = os.getenv('DATABASE_URI')
